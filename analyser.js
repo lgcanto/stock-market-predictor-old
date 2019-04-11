@@ -1,6 +1,13 @@
-var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello Node.JS!');
-}).listen(8080);
-console.log('Server running at http://localhost:8080/');
+// Get the 'deepai' package here (Compatible with browser & nodejs):
+//     https://www.npmjs.com/package/deepai
+
+// Example posting a text URL:
+
+const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
+
+deepai.setApiKey('7cbaba1f-6200-474f-9398-b22c03b502f2');
+
+var resp = await deepai.callStandardApi("sentiment-analysis", {
+        text: "Aeroporto de Guarulhos proíbe decolagens da Avianca por falta de pagamento",
+});
+console.log(resp);
