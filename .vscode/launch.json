@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/analyser.js"
+            "program": "${workspaceFolder}/extractor.js"
         }
     ]
 }
