@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "deepai": "^1.0.0",
+    "fast-xml-parser": "^3.12.16",
     "request": "^2.88.0"
   }
 }
