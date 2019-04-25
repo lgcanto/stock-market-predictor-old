@@ -19,3 +19,7 @@ node extractor.js
 ```console
 node analyser.js
 ```
+
+### TODO List (still updating):
+- [ ] Identify company names/codes
+- [ ] Replace DeepAI processing with local machine learning code
