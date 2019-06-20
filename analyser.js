@@ -48,12 +48,3 @@ fs.readFile(fileNameInput, {encoding: 'utf-8'}, function(err,data){
       console.log(err);
   }
 });
-
-// async function start(){
-//   var resp = await deepai.callStandardApi("sentiment-analysis", {
-//     text: "Aeroporto de Guarulhos proíbe decolagens da Avianca por falta de pagamento"
-//   });
-//   console.log(resp);
-// }
-
-// start();

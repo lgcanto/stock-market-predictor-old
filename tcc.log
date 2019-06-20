@@ -1,0 +1,18 @@
+- Pré-processamento
+    - Dataset de notícias
+        - Deixar apenas colunas de 'data' e 'cabecalho'
+        - Organizar lista de nomes de empresa (nome comum que normalmente aparece em notícias) que compoem o indice bovespa (a partir desta lista: http://www.bmfbovespa.com.br/pt_br/produtos/indices/indices-amplos/indice-ibovespa-ibovespa-composicao-da-carteira.htm)
+        - Filtrar noticias que contem estes nomes comuns de empresas
+        - Criar duas novas colunas: 'nome da empresa' associada a noticia, 'código da empresa' na bolsa
+        - Atentar para grupo de empresas, tipo vulcabras, via varejo, etc.
+        - Colunas finais: 'data', 'manchete', 'empresa', 'codigo'
+
+    - Dataset da bovespa
+        - Deixar apenas colunas de 'preço de fechamento', 'codigo de empresa' e 'nome da empresa'
+        - Remover janelas de tempo que não existem no dataset de noticias
+        - Filtrar empresas: deixar apenas empresas que compoe o indice bovespa, a partir da lista de empresas criada no pre-processamento do dataset de noticias
+        - Criar nova coluna de 'preço de abertura', esta coluna sera a coluna de fechamento deslocada para baixo.
+        - Criar nova coluna booleana para indicar se preço subiu durante o dia ou não, isto é, se o preco de fechamento menos o preco de abertura for maior que zero. Sugestão de nome: 'valorizacao'
+        - Colunas finais: 'data', 'empresa', 'codigo', 'abertura', 'fechamento', 'valorizacao'
+
+    - Fazer join de datasets por 'data' e 'codigo da empresa'
