@@ -8,7 +8,7 @@
         - Colunas finais: 'data', 'manchete', 'empresa', 'codigo'
 
     - Dataset da bovespa
-        - Deixar apenas colunas de 'preço de fechamento', 'codigo de empresa' e 'nome da empresa'
+        - Deixar apenas colunas de 'data', 'preço de fechamento', 'codigo de empresa' e 'nome da empresa'
         - Remover janelas de tempo que não existem no dataset de noticias
         - Filtrar empresas: deixar apenas empresas que compoe o indice bovespa, a partir da lista de empresas criada no pre-processamento do dataset de noticias
         - Criar nova coluna de 'preço de abertura', esta coluna sera a coluna de fechamento deslocada para baixo.
@@ -16,3 +16,11 @@
         - Colunas finais: 'data', 'empresa', 'codigo', 'abertura', 'fechamento', 'valorizacao'
 
     - Fazer join de datasets por 'data' e 'codigo da empresa'
+
+'from siemmens machine:'
+
+19/06
+
+    - Pegando dataset de notícias da Folha pelo Kaggle: https://www.kaggle.com/marlesson/news-of-the-site-folhauol/
+    - Pegando dataset de indices da bovespa pelo Kaggle: https://www.kaggle.com/dcampeao/bovespa
+    - A ideia é fazer um data set com as colunas: data | noticia (cabeçalho) | empresa associada a noticia | código da empresa na bovespa | booleano pra indicar se o indice do papel subiu ou desceu
