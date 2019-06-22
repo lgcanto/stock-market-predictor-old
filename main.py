@@ -9,21 +9,20 @@ df_artigos = pd.read_csv('datasets/kaggle/articles.csv')
 ## Funções
 
 # denifição de estado de fechamento diário do papel
-def defineClass (row):
-    if row['Close'] > row['Open']:
+def defineClass (open, close):
+    if close > open:
         return 1 # ocorreu valorização
-    if row['Open'] > row['Close']:
+    if open > close:
         return -1 # ocorreu desvalorização
     else:
         return 0 # não houve mudança de preço
     
 # definição de data de efeito da notícia (próxima data de funcionamento da B3 após o lançamento da notícia)
-# todo
-def defineEffectDate (row):
-    effectDate = row['date']
-    if effectDate in df_bovespa.Date:
-        return effectDate
-    return 0
+def defineEffectDate (date):
+    effectDate = date
+    while (df_bovespa[df_bovespa.date == effectDate].size < 1):
+        effectDate = effectDate + 1
+    return effectDate
 
 ## Processamento de Dados
 
@@ -36,12 +35,11 @@ df_artigos['date'] = df_artigos.apply(lambda row: np.int64(row['date'].replace('
 # removendo colunas desnecessárias do dataset de índices
 bovespa_unused_columns = ['TypeReg', 'BDICode', 'MarketType', 'Spec', 'Prazot', 'Currency', 'Max', 'Min', 'Med', 'Preofc', 'Preofv', 'Totneg', 'Quatot']
 df_bovespa.drop(bovespa_unused_columns, inplace=True, axis=1)
+df_bovespa.columns = map(str.lower, df_bovespa.columns)
 # filtrando índices para obtermos apenas índices de empresas do índice Bovespa
-df_bovespa = df_bovespa[df_bovespa.Codneg.str.strip().isin(df_empresas.Code)]
+df_bovespa = df_bovespa[df_bovespa.codneg.str.strip().isin(df_empresas.code)]
 # removendo janela de tempo inferior que não existe no dataset de notícias
-df_bovespa = df_bovespa[df_bovespa.Date >= df_artigos.date.min()]
+df_bovespa = df_bovespa[df_bovespa.date >= df_artigos.date.min()]
 
 # criando coluna de data de efeito
-df_artigos['effect_date'] = df_artigos.apply(lambda row: defineEffectDate(row), axis=1)
-# criando coluna de classificação
-df_bovespa['Class'] = df_bovespa.apply(lambda row: defineClass(row), axis=1)
+#df_artigos['effect_date'] = df_artigos.apply(lambda row: defineEffectDate(row), axis=1)
