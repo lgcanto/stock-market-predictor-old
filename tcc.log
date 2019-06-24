@@ -1,7 +1,12 @@
+- Fontes de dados
+    - Noticias da Folha: https://www.kaggle.com/marlesson/news-of-the-site-folhauol/
+    - Histórico de índices da bovespa: https://www.kaggle.com/dcampeao/bovespa
+    - Lista de índices que compõem o ibovespa: http://www.bmfbovespa.com.br/pt_br/produtos/indices/indices-amplos/indice-ibovespa-ibovespa-composicao-da-carteira.htm
+
 - Pré-processamento
     - Dataset de notícias
-        - Deixar apenas colunas de 'data' e 'cabecalho'
-        - Organizar lista de nomes de empresa (nome comum que normalmente aparece em notícias) que compoem o indice bovespa (a partir desta lista: http://www.bmfbovespa.com.br/pt_br/produtos/indices/indices-amplos/indice-ibovespa-ibovespa-composicao-da-carteira.htm)
+        - Deixar apenas colunas de 'data' e 'cabecalho' (talvez trocar para o corpo da noticia no futuro)
+        - Organizar lista de nomes de empresa (nome comum que normalmente aparece em notícias) que compoem o indice bovespa
         - Filtrar noticias que contem estes nomes comuns de empresas
         - Criar duas novas colunas: 'nome da empresa' associada a noticia, 'código da empresa' na bolsa
         - Atentar para grupo de empresas, tipo vulcabras, via varejo, etc.
@@ -17,10 +22,12 @@
 
     - Fazer join de datasets por 'data' e 'codigo da empresa'
 
-'from siemmens machine:'
+    - Filtrar notícias - TODO
+        - Achar nomes associados ao papel ('Vale' e 'Samarco' para 'VALE3', por exemplo)
+        - Filtras resultados errados ('Vale do Silício', 'Vale do Paraíba')
+        - Tentar fazer isso com alguma expressão regular?
 
-19/06
+- Buscar algoritmos para treinar o set e criar o modelo - Testar como está agora
+    - BOW seguido de regressão logística
 
-    - Pegando dataset de notícias da Folha pelo Kaggle: https://www.kaggle.com/marlesson/news-of-the-site-folhauol/
-    - Pegando dataset de indices da bovespa pelo Kaggle: https://www.kaggle.com/dcampeao/bovespa
-    - A ideia é fazer um data set com as colunas: data | noticia (cabeçalho) | empresa associada a noticia | código da empresa na bovespa | booleano pra indicar se o indice do papel subiu ou desceu
+- Remover palavras que aparecem muito (>90%) ou pouco (<10%), normalmente são preposições
